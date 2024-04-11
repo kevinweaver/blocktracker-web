@@ -171,7 +171,6 @@ export const initGalaxyScene = (canvasId) => {
 
   let galaxy = new Galaxy(scene);
 
-  initRenderPipeline();
-  render();
-  //requestAnimationFrame(render);
+  requestAnimationFrame(render);
+  console.log("render");
 };
