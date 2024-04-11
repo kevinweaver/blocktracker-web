@@ -61,6 +61,8 @@ const GalaxyCanvas = () => {
 
     // Postprocessing setup
     const renderScene = new RenderPass(scene, camera);
+
+    // Rendering pass for bloom
     const bloomPass = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
       1.5,
@@ -71,10 +73,16 @@ const GalaxyCanvas = () => {
     bloomPass.strength = BLOOM_PARAMS.bloomStrength;
     bloomPass.radius = BLOOM_PARAMS.bloomRadius;
 
+    // bloom composer
     const bloomComposer = new EffectComposer(renderer);
+    bloomComposer.renderToScreen = false;
     bloomComposer.addPass(renderScene);
     bloomComposer.addPass(bloomPass);
 
+    // overlay composer
+    const overlayComposer = new EffectComposer(renderer);
+    overlayComposer.renderToScreen = false;
+    overlayComposer.addPass(renderScene);
     const finalPass = new ShaderPass(
       new THREE.ShaderMaterial({
         uniforms: {
@@ -97,8 +105,20 @@ const GalaxyCanvas = () => {
 
     // Animation loop
     const animate = () => {
+      // Render bloom
+      camera.layers.set(BLOOM_LAYER);
+      bloomComposer.render();
+
+      // Render overlays
+      camera.layers.set(OVERLAY_LAYER);
+      overlayComposer.render();
+
+      // Render normal
+      camera.layers.set(BASE_LAYER);
+      baseComposer.render();
       controls.update();
       baseComposer.render();
+
       requestAnimationFrame(animate);
     };
     animate();
