@@ -20,7 +20,7 @@ import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { Galaxy } from "./objects/galaxy.js";
 
 export const initGalaxyScene = (canvasId) => {
-  let canvas,
+  let canvas = document.getElementById(canvasId),
     renderer,
     camera,
     scene,
@@ -30,9 +30,6 @@ export const initGalaxyScene = (canvasId) => {
     overlayComposer;
 
   function initThree() {
-    // grab canvas
-    canvas = document.querySelector("#canvas");
-
     // scene
     scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0xebe2db, 0.00003);
@@ -174,5 +171,7 @@ export const initGalaxyScene = (canvasId) => {
 
   let galaxy = new Galaxy(scene);
 
-  requestAnimationFrame(render);
+  initRenderPipeline();
+  render();
+  //requestAnimationFrame(render);
 };

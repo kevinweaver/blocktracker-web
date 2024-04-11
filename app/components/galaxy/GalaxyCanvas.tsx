@@ -1,3 +1,8 @@
+/***
+ * TODO DELETE THIS FILE
+ * This was my first pass shoving main.js into a react component
+ * instead im using GalaxyScene.tsx to call the main.js
+ */
 "use client";
 // components/ThreeCanvas.js
 import React, { useEffect, useRef } from "react";
