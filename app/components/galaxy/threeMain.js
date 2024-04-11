@@ -10,7 +10,7 @@ import {
 } from "./config/renderConfig.js";
 
 // Rendering
-import { MapControls } from "three/addons/controls/OrbitControls.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
@@ -46,7 +46,7 @@ export const initGalaxyScene = (canvasId) => {
     camera.lookAt(0, 0, 0);
 
     // map orbit
-    orbit = new MapControls(camera, canvas);
+    orbit = new OrbitControls(camera, canvas);
     orbit.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     orbit.dampingFactor = 0.05;
     orbit.screenSpacePanning = false;
