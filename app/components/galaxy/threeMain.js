@@ -29,6 +29,7 @@ export const initGalaxyScene = (canvasId) => {
     bloomComposer,
     overlayComposer;
 
+  console.log("canvas", canvas);
   function initThree() {
     // scene
     scene = new THREE.Scene();

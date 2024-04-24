@@ -9,7 +9,11 @@ const GalaxyScene = () => {
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <canvas id="canvas" style={{ width: "100%", height: "100%" }}></canvas>
+      <canvas
+        id="canvas"
+        data-engine="three.js r146"
+        style={{ width: "100%", height: "100%" }}
+      ></canvas>
     </div>
   );
 };
